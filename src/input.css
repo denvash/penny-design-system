@@ -1,1 +1,27 @@
+@import "@fontsource/poppins";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/400-italic.css";
 @import "tailwindcss";
+
+@theme {
+  --color-brand: #7849ff;
+  --color-brand-action: #5f33e6;
+  --color-brand-pressed: #4315cb;
+
+  --color-primary: #18191b;
+  --color-secondary: #646f87;
+  --color-secondary-action: #f1f5f8;
+
+  --color-interactive: #8b95a9;
+  --color-disabled: #c3cad5;
+
+  --color-critical: #d80e25;
+  --color-critical-action: #c50c22;
+
+  /* Border usage */
+  --color-static: #e4e7ec;
+}
+
+html body {
+  font-family: "Poppins";
+}

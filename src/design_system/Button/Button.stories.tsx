@@ -1,22 +1,40 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button } from "./Button";
+import { fn } from "@storybook/test";
+import {
+  INITIAL_VIEWPORTS,
+  MINIMAL_VIEWPORTS,
+} from "@storybook/addon-viewport";
 
 const meta: Meta<typeof Button> = {
-  title: "My Button",
+  title: "Design System/Button",
   component: Button,
   parameters: {
     layout: "centered",
-  },
-  tags: ["autodocs"],
-  argTypes: {
-    intent: {
-      control: "inline-radio",
-      options: ["primary", "secondary", "warning"],
+    viewport: {
+      options: MINIMAL_VIEWPORTS,
     },
-    children: { control: "text" },
-    size: { control: "inline-radio", options: ["small", "medium"] },
   },
+  argTypes: {
+    icon: {
+      control: { type: "select" },
+    },
+    size: {
+      table: {
+        defaultValue: {
+          summary: "medium",
+        },
+      },
+    },
+    iconPosition: {
+      table: {
+        defaultValue: {
+          summary: "undefined",
+        },
+      },
+    },
+  },
+  args: { onClick: fn(), icon: "plus" },
 };
 
 export default meta;
@@ -25,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: "Primary",
+    label: "Label",
     intent: "primary",
     size: "medium",
   },
@@ -33,16 +51,31 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    children: "Secondary",
+    ...Primary.args,
     intent: "secondary",
-    size: "medium",
   },
 };
 
 export const Warning: Story = {
   args: {
-    children: "Warning",
-    intent: "warning",
-    size: "medium",
+    ...Primary.args,
+    intent: "critical",
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    ...Primary.args,
+    iconPosition: "left",
+  },
+};
+
+export const MobileViewport: Story = {
+  parameters: {
+    viewport: { options: INITIAL_VIEWPORTS, defaultViewport: "mobile1" },
+  },
+  args: {
+    ...Primary.args,
+    iconPosition: "left",
   },
 };
