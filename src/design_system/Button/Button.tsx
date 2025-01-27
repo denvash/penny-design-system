@@ -1,18 +1,31 @@
 import { cva, cx } from "cva";
 import * as Headless from "@headlessui/react";
-import { ICON_COMPONENT } from "../IconRenderer";
+import { ICON_COMPONENT } from "@penny/IconRenderer";
 
 /**
- * Featues:
- * - Focus ring, inset for secondary intent
+ * Spec:
+ * - Label string
+ * - className override
+ * - Button types
+ * - Sizing
+ * - Icon position
+ * - Hover
+ * - Mobile support
+ * - Focus ring
  *
  * Caveats:
  * - Only "plus" icon supported as icon type
  * - Mobile icon button variant supported only for `medium` size
- * - Viewport feature globaly triggered on "Mobile viewport" story (reset it manually).
  */
 export const Button = (props: ButtonProps) => {
-  const { className, label, intent, size = "medium", iconPosition } = props;
+  const {
+    className,
+    label,
+    intent,
+    size = "medium",
+    iconPosition,
+    onClick,
+  } = props;
 
   const isIconEnabled = iconPosition !== undefined;
 
@@ -38,7 +51,11 @@ export const Button = (props: ButtonProps) => {
   ) : null;
 
   return (
-    <Headless.Button type="button" className={buttonClassNameOverride}>
+    <Headless.Button
+      type="button"
+      className={buttonClassNameOverride}
+      onClick={onClick}
+    >
       {iconPosition === "left" && iconComponent}
       <div className={labelClassName}>{label}</div>
       {iconPosition === "right" && iconComponent}

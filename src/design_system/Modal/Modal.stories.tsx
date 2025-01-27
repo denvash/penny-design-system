@@ -19,7 +19,6 @@ const meta: Meta<typeof Modal> = {
       primaryLabel,
       secondaryLabel,
       primaryOnClick,
-      secondaryOnClick,
     } = props;
     const [isOpen, setIsOpen] = useState(isOpenInitial);
     return (
@@ -31,7 +30,8 @@ const meta: Meta<typeof Modal> = {
           primaryLabel={primaryLabel}
           secondaryLabel={secondaryLabel}
           primaryOnClick={primaryOnClick}
-          secondaryOnClick={secondaryOnClick}
+          secondaryOnClick={() => setIsOpen(false)}
+          onClose={() => setIsOpen(false)}
         />
         <button
           className="hover:bg-secondary-action cursor-pointer rounded-md border p-4"

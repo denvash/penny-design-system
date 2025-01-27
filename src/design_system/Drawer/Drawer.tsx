@@ -5,7 +5,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { ICON_COMPONENT } from "../IconRenderer";
+import { ICON_COMPONENT } from "@penny/IconRenderer";
 
 /**
  * Specs:
@@ -13,14 +13,13 @@ import { ICON_COMPONENT } from "../IconRenderer";
  * - Content as `React.Children`
  * - Supports mobile screen
  * - Backdrop coloring
+ * - Focus ring
+ * - Headless components: Panel, Title, Dialog, Backdrop
  *
- * Component that can be shared between Modal and Drawer:
+ * Component that can be extacted:
+ * - Button Group
  * - Button Icon
  * - Header Section
- *
- * Additional features:
- * - Focus ring
- * - Headless Panel,Title,Dialog,Backdrop
  */
 export const Drawer = (props: DrawerProps) => {
   const { isOpen: isOpenControlled, title, children, onClose = NOOP } = props;

@@ -1,5 +1,15 @@
-import { Button, ButtonProps } from "../Button/Button";
+import { Button, ButtonProps } from "@penny/Button";
 
+/**
+ * Specs:
+ * - Wrapper for text + right action
+ * - Support mobile
+ *
+ * Caveats:
+ * - Implemented the Figma variant to save time
+ * - Explicit API for simplicity (accepts "title" instead of "header component" etc.)
+ * - Mobile viewport according to Figma (probably can be improved)
+ */
 export const Card = (props: CardProps) => {
   const {
     title,

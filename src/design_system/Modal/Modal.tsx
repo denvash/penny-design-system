@@ -5,8 +5,8 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { Button, ButtonProps } from "../Button/Button";
-import { ICON_COMPONENT } from "../IconRenderer";
+import { Button, ButtonProps } from "@penny/Button";
+import { ICON_COMPONENT } from "@penny/IconRenderer";
 
 /**
  * Specs:
@@ -14,15 +14,13 @@ import { ICON_COMPONENT } from "../IconRenderer";
  * - Header/Footer capped h-22
  * - Supports mobile screen
  * - Backdrop coloring
+ * - Focus ring
+ * - Headless components: Panel, Title, Dialog, Backdrop
  *
  * Component that can be extacted:
  * - Button Group
  * - Button Icon
  * - Header Section
- *
- * Additional features:
- * - Focus ring
- * - Headless Panel,Title,Dialog,Backdrop
  */
 export const Modal = (props: ModalProps) => {
   const {
@@ -50,7 +48,7 @@ export const Modal = (props: ModalProps) => {
   }, [onClose]);
 
   return (
-    <Dialog open={isOpen} onClose={setIsOpen} className="relative z-10">
+    <Dialog open={isOpen} onClose={onCloseInternal} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
@@ -80,7 +78,7 @@ export const Modal = (props: ModalProps) => {
                 <div className="flex items-center">
                   <button
                     type="button"
-                    onClick={() => setIsOpen(false)}
+                    onClick={onCloseInternal}
                     className="text-primary focus:ring-brand hover:text-secondary rounded-md focus:ring-2 focus:outline-hidden"
                   >
                     <CloseIconComponent aria-hidden="true" className="size-8" />
@@ -121,8 +119,8 @@ export interface ModalProps {
   title: string;
   description: string;
   primaryLabel: ButtonProps["label"];
-  primaryOnClick: () => ButtonProps["onClick"];
+  primaryOnClick: ButtonProps["onClick"];
   secondaryLabel: ButtonProps["label"];
-  secondaryOnClick: () => ButtonProps["onClick"];
+  secondaryOnClick: ButtonProps["onClick"];
   onClose?: () => void;
 }
