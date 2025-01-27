@@ -951,7 +951,7 @@
     resolve "^1.22.8"
     tsconfig-paths "^4.2.0"
 
-"@storybook/react@8.5.1", "@storybook/react@^8.5.1":
+"@storybook/react@8.5.1":
   version "8.5.1"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-8.5.1.tgz#f5b90f0e82f8936a64b8b01ee4034586e398747a"
   integrity sha512-wKhR9SZUbpYUxRDAYUHH4fZHVxiNG43PxT1uvLfX/i7TPMw+wW+G3Q2yrgms1oHmqqRCvlnGHwT5/t9FFxN31w==
