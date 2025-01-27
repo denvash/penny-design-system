@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 import { fn } from "@storybook/test";
-import {
-  INITIAL_VIEWPORTS,
-  MINIMAL_VIEWPORTS,
-} from "@storybook/addon-viewport";
+import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 const meta: Meta<typeof Button> = {
   title: "Design System/Button",
@@ -72,7 +69,7 @@ export const WithIcon: Story = {
 
 export const MobileViewport: Story = {
   parameters: {
-    viewport: { options: INITIAL_VIEWPORTS, defaultViewport: "mobile1" },
+    viewport: { defaultViewport: "mobile1" },
   },
   args: {
     ...Primary.args,

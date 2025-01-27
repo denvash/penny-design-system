@@ -9,7 +9,7 @@ const meta: Meta<typeof Card> = {
     layout: "centered",
   },
   argTypes: {
-    primaryActionLabel: {
+    primaryLabel: {
       control: { type: "text" },
       table: {
         defaultValue: {
@@ -17,7 +17,7 @@ const meta: Meta<typeof Card> = {
         },
       },
     },
-    primaryActionSize: {
+    primarySize: {
       control: { type: "radio" },
       options: ["small", "medium", "large"],
       table: {
@@ -27,7 +27,7 @@ const meta: Meta<typeof Card> = {
       },
     },
   },
-  args: { primaryActionOnClick: fn(), primaryActionSize: "small" },
+  args: { primaryOnClick: fn(), primarySize: "small" },
 };
 
 export default meta;
@@ -42,10 +42,10 @@ export const Default: Story = {
   },
 };
 
-export const RightAction: Story = {
+export const RightButton: Story = {
   args: {
     title: "Request delivery details",
     description: "We'll email your vendor to set their delivery method.",
-    primaryActionLabel: "Send request",
+    primaryLabel: "Send request",
   },
 };

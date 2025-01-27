@@ -99,10 +99,10 @@ export interface ButtonProps {
   intent: "primary" | "secondary" | "critical";
   /** Optional position to render the icon */
   iconPosition?: "left" | "right";
-  /** Icon to render (**Unused**, only for example)  */
-  icon?: "plus" | "minus" | "refresh";
   /** Optional click handler */
   onClick?: () => void;
   /** Button sizing */
   size?: "small" | "medium" | "large";
+  /** Icon to render (**Unused**, only for example)  */
+  icon?: "plus" | "minus" | "refresh";
 }

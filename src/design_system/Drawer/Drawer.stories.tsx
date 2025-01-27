@@ -1,12 +1,33 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Drawer } from "./Drawer";
-import { fn } from "@storybook/test";
+import { useState } from "react";
+import { MINIMAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 const meta: Meta<typeof Drawer> = {
   title: "Design System/Drawer",
   component: Drawer,
   parameters: { layout: "centered" },
   argTypes: {},
+  args: {
+    isOpen: false,
+  },
+  render: (props) => {
+    const { title, isOpen: isOpenInitial, children } = props;
+    const [isOpen, setIsOpen] = useState(isOpenInitial);
+    return (
+      <div>
+        <Drawer isOpen={isOpen} title={title} onClose={() => setIsOpen(false)}>
+          {children}
+        </Drawer>
+        <button
+          className="hover:bg-secondary-action cursor-pointer rounded-md border p-4"
+          onClick={() => setIsOpen(true)}
+        >
+          Open Drawer
+        </button>
+      </div>
+    );
+  },
 };
 
 export default meta;
@@ -15,18 +36,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    isOpen: true,
     title: "Drawer title",
+    children: (
+      <div className="h-screen rounded-md bg-linear-to-r from-gray-500 to-gray-200 opacity-50" />
+    ),
   },
 };
 
 export const WithContent: Story = {
   args: {
-    isOpen: true,
-    title: "Drawer title",
+    title: "Vendor Lorem ipsum",
     children: (
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold">Lorem Ipsum</h1>
+        <h1 className="text-xl font-semibold">Lorem Ipsum</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
           sollicitudin odio ut elit efficitur rhoncus. Maecenas convallis

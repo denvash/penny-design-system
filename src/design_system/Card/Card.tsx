@@ -4,13 +4,12 @@ export const Card = (props: CardProps) => {
   const {
     title,
     description,
-    primaryActionLabel,
-    primaryActionOnClick,
-    primaryActionSize = "small",
+    primaryLabel,
+    primaryOnClick,
+    primarySize = "small",
   } = props;
 
-  const isButtonEnabled =
-    primaryActionLabel != null && primaryActionOnClick != null;
+  const isButtonEnabled = primaryLabel != null && primaryOnClick != null;
 
   return (
     <div className="border-static overflow-hidden rounded-md border bg-white p-6">
@@ -26,9 +25,9 @@ export const Card = (props: CardProps) => {
           <div className="shrink-0">
             <Button
               intent="primary"
-              label={primaryActionLabel}
-              onClick={primaryActionOnClick}
-              size={primaryActionSize}
+              label={primaryLabel}
+              onClick={primaryOnClick}
+              size={primarySize}
             />
           </div>
         )}
@@ -43,9 +42,9 @@ export interface CardProps {
   /** Description (sub-title) */
   description: string;
   /** Option primary-button label text */
-  primaryActionLabel?: ButtonProps["label"];
+  primaryLabel?: ButtonProps["label"];
   /** Optional primary-button click handler */
-  primaryActionOnClick?: () => ButtonProps["onClick"];
+  primaryOnClick?: () => ButtonProps["onClick"];
   /** Sizing of primary button */
-  primaryActionSize?: ButtonProps["size"];
+  primarySize?: ButtonProps["size"];
 }

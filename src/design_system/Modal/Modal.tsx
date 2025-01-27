@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -33,6 +33,7 @@ export const Modal = (props: ModalProps) => {
     primaryOnClick,
     secondaryLabel,
     secondaryOnClick,
+    onClose = NOOP,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,11 @@ export const Modal = (props: ModalProps) => {
       setIsOpen(isOpenControlled);
     }
   }, [isOpenControlled]);
+
+  const onCloseInternal = useCallback(() => {
+    setIsOpen(false);
+    onClose();
+  }, [onClose]);
 
   return (
     <Dialog open={isOpen} onClose={setIsOpen} className="relative z-10">
@@ -108,6 +114,7 @@ export const Modal = (props: ModalProps) => {
 
 const ErrorIconComponent = ICON_COMPONENT.error;
 const CloseIconComponent = ICON_COMPONENT.close;
+const NOOP = () => {};
 
 export interface ModalProps {
   isOpen: boolean;
@@ -117,4 +124,5 @@ export interface ModalProps {
   primaryOnClick: () => ButtonProps["onClick"];
   secondaryLabel: ButtonProps["label"];
   secondaryOnClick: () => ButtonProps["onClick"];
+  onClose?: () => void;
 }

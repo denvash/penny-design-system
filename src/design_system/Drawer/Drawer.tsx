@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -9,8 +9,8 @@ import { ICON_COMPONENT } from "../IconRenderer";
 
 /**
  * Specs:
- * - Header h-22 capped as in Figma
- * - Content as React.Children
+ * - Header `h-22` capped as in Figma
+ * - Content as `React.Children`
  * - Supports mobile screen
  * - Backdrop coloring
  *
@@ -23,7 +23,7 @@ import { ICON_COMPONENT } from "../IconRenderer";
  * - Headless Panel,Title,Dialog,Backdrop
  */
 export const Drawer = (props: DrawerProps) => {
-  const { isOpen: isOpenControlled, title, children } = props;
+  const { isOpen: isOpenControlled, title, children, onClose = NOOP } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,8 +33,13 @@ export const Drawer = (props: DrawerProps) => {
     }
   }, [isOpenControlled]);
 
+  const onCloseInternal = useCallback(() => {
+    setIsOpen(false);
+    onClose();
+  }, [onClose]);
+
   return (
-    <Dialog open={isOpen} onClose={setIsOpen} className="relative z-10">
+    <Dialog open={isOpen} onClose={onCloseInternal} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
@@ -61,7 +66,7 @@ export const Drawer = (props: DrawerProps) => {
                    */}
                   <button
                     type="button"
-                    onClick={() => setIsOpen(false)}
+                    onClick={onCloseInternal}
                     className="text-primary focus:ring-brand hover:text-secondary rounded-md focus:ring-2 focus:outline-hidden"
                   >
                     <CloseIconComponent aria-hidden="true" className="size-8" />
@@ -79,9 +84,11 @@ export const Drawer = (props: DrawerProps) => {
 };
 
 const CloseIconComponent = ICON_COMPONENT.close;
+const NOOP = () => {};
 
 export interface DrawerProps {
   isOpen: boolean;
   title: string;
   children: React.ReactNode;
+  onClose?: () => void;
 }
