@@ -27,16 +27,18 @@ yarn storybook
 
 ## Package Details
 
-1. Vite (React+Typescript): build tool
-2. Storybook: UI dev env
-3. Tailwind CSS: simplification CSS layer
-4. Headless UI: minimal layer on top of native HTML elements (unstyled, accessibility)
-5. cva: CSS-in-TS variants layer
-6. cx: conditionally string joins
-7. Prettier + plugin: formatting regex detected plaintext (format tw class names)
-8. vite-tsconfig-paths: consider path alias TS compiler feature.
-9. @storybook/builder-vite: consider the vite builder for SB (to include path aliases)
-10. PostCSS + Autoprefixer plugin: transform CSS styles with JS plugins (used by tw).
+| Package                       | Explanation                                                            |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| Vite (React+Typescript)       | Build tool                                                             |
+| Storybook                     | UI documentation and development environment                           |
+| Tailwind CSS                  | CSS simplification layer                                               |
+| Headless UI                   | Minimal layer on top of native HTML elements (unstyled, accessibility) |
+| `cva`                         | CSS-in-TS variants layer (build complicated CSS variants)              |
+| `cx`                          | Conditional string joins (build complicated `classNames`)              |
+| Prettier + Tailwind plugin    | Formatting regex detected plaintext (format tw class names)            |
+| `vite-tsconfig-paths`         | Considers TS compiler path alias feature                               |
+| `@storybook/builder-vite`     | Considers the vite builder for SB (to include path aliases)            |
+| PostCSS + Autoprefixer plugin | Transform CSS styles with JS plugins (used by tw)                      |
 
 ## DevX configurations
 
